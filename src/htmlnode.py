@@ -23,7 +23,7 @@ class HtmlNode:
 
 
 class LeafNode(HtmlNode):
-    def __init__(self, tag=None, value=None, props=None):
+    def __init__(self, tag, value, props=None):
         super().__init__(tag, value, None, props)
 
     def to_html(self):
@@ -38,3 +38,25 @@ class LeafNode(HtmlNode):
 
     def __repr__(self):
         return f"LeafNode({self.tag}, {self.value}, {self.props})"
+
+
+class ParentNode(HtmlNode):
+    def __init__(self, tag, children, props=None):
+        super().__init__(tag, None, children, props)
+
+    def to_html(self):
+        if self.tag is None:
+            raise ValueError
+        if self.children is None:
+            raise ValueError("No children")
+
+        inner = []
+        for child in self.children:
+            inner.append(child.to_html())
+
+        inner_text = "".join(inner)
+
+        return f"<{self.tag}>{inner_text}</{self.tag}>"
+    
+    def __repr__(self):
+        return f"ParentNode({self.tag}, children: {self.children}, {self.props})"
