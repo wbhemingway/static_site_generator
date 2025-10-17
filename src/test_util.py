@@ -285,3 +285,6 @@ class TestTextToTextNodes(unittest.TestCase):
             TextNode("link", TextType.LINK, "https://boot.dev"),
         ]
         self.assertListEqual(nodes, expected_nodes)
+
+if __name__ == "__main__":
+    unittest.main()
