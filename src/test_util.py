@@ -93,12 +93,14 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         with self.assertRaises(Exception) as cm:
             node = TextNode("This is a `code block!", TextType.TEXT)
             actual_nodes = split_nodes_delimiter([node], "`", TextType.CODE)
+            return actual_nodes
         self.assertEqual(str(cm.exception), "No closing delimiter found for `")
 
     def test_code_error_one_valid(self):
         with self.assertRaises(Exception) as cm:
             node = TextNode("This is a `code` block`!", TextType.TEXT)
             actual_nodes = split_nodes_delimiter([node], "`", TextType.CODE)
+            return actual_nodes
         self.assertEqual(str(cm.exception), "No closing delimiter found for `")
 
     def test_starting_delimiter(self):
@@ -285,6 +287,7 @@ class TestTextToTextNodes(unittest.TestCase):
             TextNode("link", TextType.LINK, "https://boot.dev"),
         ]
         self.assertListEqual(nodes, expected_nodes)
+
 
 if __name__ == "__main__":
     unittest.main()
