@@ -1,14 +1,15 @@
+
 class HtmlNode:
-    def __init__(self, tag=None, value=None, children=None, props=None):
+    def __init__(self, tag: str | None=None, value: str | None=None, children: list["HtmlNode"] | None=None, props: dict | None=None):
         self.tag = tag
         self.value = value
         self.children = children
         self.props = props
 
-    def to_html(self):
+    def to_html(self) -> Exception:
         raise NotImplementedError
 
-    def props_to_html(self):
+    def props_to_html(self) -> str:
         if not self.props:
             return ""
         prop_list = []
@@ -23,7 +24,7 @@ class HtmlNode:
 
 
 class LeafNode(HtmlNode):
-    def __init__(self, tag, value, props=None):
+    def __init__(self, tag: str, value: str, props: list[str] | None=None):
         super().__init__(tag, value, None, props)
 
     def to_html(self):
@@ -41,7 +42,7 @@ class LeafNode(HtmlNode):
 
 
 class ParentNode(HtmlNode):
-    def __init__(self, tag, children, props=None):
+    def __init__(self, tag: str, children: str, props: list[str] | None=None):
         super().__init__(tag, None, children, props)
 
     def to_html(self):
