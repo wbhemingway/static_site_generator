@@ -1,9 +1,10 @@
-from textnode import TextNode
+from copy_static import copy_static
 
 
 def main():
-    textnode = TextNode("Anchor", "link", "examplelink.com")
-    print(textnode)
+    src = "/home/willi/workspace/github.com/wbhemingway/static_site_generator/static"
+    dst = "/home/willi/workspace/github.com/wbhemingway/static_site_generator/public"
+    copy_static(src, dst)
 
 
 if __name__ == "__main__":
