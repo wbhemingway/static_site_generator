@@ -42,7 +42,7 @@ class LeafNode(HtmlNode):
 
 
 class ParentNode(HtmlNode):
-    def __init__(self, tag: str, children: str, props: list[str] | None=None):
+    def __init__(self, tag: str, children: list[HtmlNode], props: list[str] | None=None):
         super().__init__(tag, None, children, props)
 
     def to_html(self):
