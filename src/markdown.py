@@ -143,3 +143,13 @@ def quote_to_html_node(block: str) -> HtmlNode:
     content = " ".join(new_lines)
     children = text_to_children(content)
     return ParentNode("blockquote", children)
+
+
+def extract_title(markdown: str) -> str:
+    children = markdown_to_html_node(markdown).children
+    for child in children:
+        # print(child)
+        if child.tag == "h1":
+            print(child)
+            return child.children[0].value
+    raise Exception("Header not found")

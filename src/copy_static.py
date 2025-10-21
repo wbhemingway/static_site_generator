@@ -1,20 +1,16 @@
 import os
 import shutil
 
-def copy_static(src: str, dst: str):
-    if not os.path.exists(src):
-        raise Exception("Source directory does not exist")
-    
-    if os.path.exists(dst):
-        shutil.rmtree(dst)
-    os.mkdir(dst)
 
-    dir_list = os.listdir(src)
+def copy_static(source_dir_path: str, dest_dir_path: str):
+    if not os.path.exists(dest_dir_path):
+        os.mkdir(dest_dir_path)
 
-    for dir in dir_list:
-        dst_path = os.path.join(dst, dir)
-        src_path = os.path.join(src, dir)
-        if os.path.isfile(src_path):
-            shutil.copy(src_path, dst_path)
+    for filename in os.listdir(source_dir_path):
+        from_path = os.path.join(source_dir_path, filename)
+        dest_path = os.path.join(dest_dir_path, filename)
+        print(f" * {from_path} -> {dest_path}")
+        if os.path.isfile(from_path):
+            shutil.copy(from_path, dest_path)
         else:
-            copy_static(src_path, dst_path)
+            copy_static(from_path, dest_path)
